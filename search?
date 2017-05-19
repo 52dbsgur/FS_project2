@@ -1,0 +1,51 @@
+#include<iostream>
+#include<fstream>
+
+using namespace std;
+
+int convert(int num, int prefix) {                                    // 10진수를 2진수로 바꾸는 부분
+	/*int result = 0;
+	for (int i = 1; num > 0; i *= 10) {
+		int binary = num % 2;
+		result += binary*i;
+		num /= 2;
+	}*/
+
+	int key = num % (10 ^ prefix);
+
+	/*char *arr = new char[prefix - 1];                                   //  arr에다가 prefix
+	arr[prefix] = '/0';
+	for (int i = 0; prefix < 0; result /= 10, prefix--, i++) {
+		arr[i] = result % 1;
+	}*/
+	return key;
+}
+
+int compare(int key) {
+
+	ifstream fin;
+	fin.open("table.txt");
+	int variable;
+	fin >> variable;
+	while (variable == 4)
+	{
+		if (variable == key) {
+			fin >> variable;
+			return variable;
+		}
+		fin >> variable;
+		fin >> variable;
+		fin >> variable;
+	}
+	fin.close();
+	return 0;
+}
+
+
+int main() {
+
+	cout << compare(convert(3, 2)) << endl;
+
+
+	return 0;
+}
